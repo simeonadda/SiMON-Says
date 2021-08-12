@@ -4,6 +4,8 @@ body {
   font-family: 'Cantarell', sans-serif;
   font-size: 25px;
   margin: 225px;
+  margin-top: 50px;
+  min-width: 750px;
 }
 
 nav {
@@ -30,39 +32,70 @@ section {
   cursor: pointer;
 }
 
-#top-left {
+
+.top-left {
   border-top-left-radius: 250px;
   border: groove darkgray 10px;
   background-color: blue;
 }
 
-#top-left:active {
-  background-image: radial-gradient(farthest-corner at 50% 50%, rgba(0, 0, 255, 0), rgba(0, 0, 255, 1));
-  transform: translateY(8px);
+.top-left:hover {
+  background-color: lightblue;
 }
 
-#top-right {
+.top-left:active {
+  background-color: white;
+  transform: translate(4px, 4px);
+}
+
+.top-right {
   border-top-right-radius: 250px;
   border: groove darkgray 10px;
   background-color: yellow;
 }
 
-#top-right:active {
-  background-color: radial-gradient(farthest-corner at 50% 50%, rgba(255, 255, 0, 0), rgba(255, 255, 0, 1));
-  transform: translateY(8px);
+.top-right:hover {
+  background-color: lightyellow;
+}
+
+.top-right:active {
+  background-color: white;
+  transform: translate(-4px, 4px);
 }
 
 
-#bottom-left {
+.bottom-left {
   border-bottom-left-radius: 250px;
   border: groove darkgray 10px;
   background-color: red;
 }
 
-#bottom-right {
+.bottom-left:hover {
+  background-color: lightcoral;
+}
+
+.bottom-left:active {
+  background-color: white;
+  transform: translate(4px, -4px);
+}
+
+.bottom-right {
   border-bottom-right-radius: 250px;
   border: groove darkgray 10px;
   background-color: green;
+}
+
+.bottom-right:hover {
+  background-color: lightgreen;
+}
+
+.bottom-right:active {
+  background-color: white;
+  transform: translate(-4px, -4px);
+}
+
+.active {
+  background-color: white;
 }
 
 footer {
