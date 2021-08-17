@@ -16,6 +16,11 @@ const panels = [
   bottomRight
 ];
 
+const game = {
+  round: 1,
+  clock: 15
+}
+
 // function to light up panels
 function lightTopLeftPanel() {
   topLeft.className += ' active'
@@ -51,38 +56,44 @@ function dimBottomRightPanel() {
   bottomRight.className = bottomRight.className.replace(' active', '')
 }
 
-const getRandomLights = () => {
-  const lightPanels = [
-    lightTopLeftPanel(),
-    lightTopRightPanel(),
-    lightBottomRightPanel(),
-    lightBottomLeftPanel()
-  ];
-  return lightPanels[Math.floor(Math.random() * lightPanels.length)];
-}
-
-const lightSequence = () => {
-  getRandomLights()
-}
 
 // lightup function to pass through
-function flashSimon() {
+function flashTopLeftPanel() {
   lightTopLeftPanel()
-  lightTopRightPanel()
-  lightBottomRightPanel()
-  lightBottomLeftPanel()
+  setTimeout(dimTopLeftPanel, 1000)
 }
 
+function flashTopRightPanel() {
+  lightTopRightPanel()
+  setTimeout(dimTopRightPanel, 1000)
+}
+
+function flashBottomRightPanel() {
+  lightBottomRightPanel()
+  setTimeout(dimBottomRightPanel, 1000)
+}
+
+function flashBottomLeftPanel() {
+  lightBottomLeftPanel()
+  setTimeout(dimBottomLeftPanel, 1000)
+}
 
 
 // function for timing sequence // explore setInterval later on
 
 
+// Array of panels to loop through and call randomly
+const flashPanels = [
+  flashTopLeftPanel,
+  flashTopRightPanel,
+  flashBottomRightPanel,
+  flashBottomLeftPanel
+];
 
+// flashes a random panel
+const getRandomLights = () => {
+  flashPanels[Math.floor(Math.random() * flashPanels.length)]();
+}
 
-
-// for (let i = 0; i < panels.length; i++) {
-//   setTimeout(() => {
-//     panels[i].className += ' active'
-//   }, 2000)
-// }
+// Loop through to light all panels
+// const loopRandoms = setInterval(getRandomLights, 1000)
