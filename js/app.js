@@ -79,8 +79,6 @@ function flashBottomLeftPanel() {
 }
 
 
-// function for timing sequence // explore setInterval later on
-
 
 // Array of panels to loop through and call randomly
 const flashPanels = [
@@ -95,5 +93,19 @@ const getRandomLights = () => {
   flashPanels[Math.floor(Math.random() * flashPanels.length)]();
 }
 
+// function for timing sequence // explore setInterval later on
+// const sequence = [
+//   getRandomLights(),
+//   getRandomLights(),
+//   getRandomLights(),
+//   getRandomLights()
+// ]
+
 // Loop through to light all panels
-// const loopRandoms = setInterval(getRandomLights, 1000)
+function loopRandoms() {
+  for (let i = 0; i < flashPanels.length; i++) {
+      setTimeout(getRandomLights, 2000 * i)
+  }
+}
+
+loopRandoms()
