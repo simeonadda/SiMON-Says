@@ -12,100 +12,79 @@ const simonButtons = document.querySelectorAll('.simon-button')
 const panels = [
   topLeft,
   topRight,
+  bottomRight,
   bottomLeft,
-  bottomRight
 ];
+
+console.log(panels);
 
 const game = {
   round: 1,
-  clock: 15
+  timer: 15
 }
 
-// function to light up panels
-function lightTopLeftPanel() {
-  topLeft.className += ' active'
-}
+// functions to light up & dim panels
 
-function lightTopRightPanel() {
-  topRight.className += ' active'
-}
-
-function lightBottomLeftPanel() {
-  bottomLeft.className += ' active'
-}
-
-function lightBottomRightPanel() {
-  bottomRight.className += ' active'
-}
-
-
-// function to turn off panel lightup
-function dimTopLeftPanel() {
-  topLeft.className = topLeft.className.replace(' active', '')
-}
-
-function dimTopRightPanel() {
-  topRight.className = topRight.className.replace(' active', '')
-}
-
-function dimBottomLeftPanel() {
-  bottomLeft.className = bottomLeft.className.replace(' active', '')
-}
-
-function dimBottomRightPanel() {
-  bottomRight.className = bottomRight.className.replace(' active', '')
-}
-
+// const lightPanel = (panel) => {
+//   panel.className += ' active'
+// }
+//
+// const dimPanel = (panel) => {
+//   panel.className = panel.className.replace(' active', '')
+// }
 
 // lightup function to pass through
-function flashTopLeftPanel() {
-  lightTopLeftPanel()
-  setTimeout(dimTopLeftPanel, 1000)
+
+const flashPanel = (panel) => {
+  panel.className += ' active'
+  setTimeout(() => {
+    panel.className = panel.className.replace(' active', '')
+  }, 500)
 }
 
-function flashTopRightPanel() {
-  lightTopRightPanel()
-  setTimeout(dimTopRightPanel, 1000)
-}
+// RETURNS A RANDOM PANEL
 
-function flashBottomRightPanel() {
-  lightBottomRightPanel()
-  setTimeout(dimBottomRightPanel, 1000)
-}
-
-function flashBottomLeftPanel() {
-  lightBottomLeftPanel()
-  setTimeout(dimBottomLeftPanel, 1000)
+const getRandomPanel = () => {
+  return panels[Math.floor(Math.random() * panels.length)];
 }
 
 
+// SEQUENCE & PLAYER GUESSING
 
-// Array of panels to loop through and call randomly
-const flashPanels = [
-  flashTopLeftPanel,
-  flashTopRightPanel,
-  flashBottomRightPanel,
-  flashBottomLeftPanel
-];
+const sequence = [getRandomPanel()]
 
-// flashes a random panel
-const getRandomLights = () => {
-  flashPanels[Math.floor(Math.random() * flashPanels.length)]();
-}
+let guessSequence = [...sequence]
+console.log(guessSequence);
 
-// function for timing sequence // explore setInterval later on
-// const sequence = [
-//   getRandomLights(),
-//   getRandomLights(),
-//   getRandomLights(),
-//   getRandomLights()
-// ]
+// FUNCTION AND VARIABLE FOR CLICKED PANEL
 
-// Loop through to light all panels
-function loopRandoms() {
-  for (let i = 0; i < flashPanels.length; i++) {
-      setTimeout(getRandomLights, 2000 * i)
+let clickable = false;
+
+const clickedPanel = (panel) => {
+  if (!clickable) return;
+  console.log(panel);
+  const guessPanel = guessSequence.shift()
+  if (guessPanel === panel) {
+    if (guessSequence.length === 0) {
+      sequence.push(getRandomPanel())
+      guessSequence = [...sequence]
+      setTimeout(loopSequence, 1500)
+    }
+  } else {
+    // end game
+    // check for high score function
+    alert("GAME OVER")
   }
 }
 
-loopRandoms()
+
+// AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
+
+const loopSequence = () => {
+  for (let i = 0; i < sequence.length; i++) {
+    setTimeout(flashPanel, 1000 * i, sequence[i])
+  }
+  clickable = true;
+}
+
+loopSequence()
