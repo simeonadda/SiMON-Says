@@ -9,6 +9,7 @@ const bottomRight = document.querySelector(".bottom-right")
 
 const simonButtons = document.querySelectorAll('.simon-button')
 
+
 const panels = [
   topLeft,
   topRight,
@@ -16,24 +17,32 @@ const panels = [
   bottomLeft,
 ];
 
+
+// GAME OBJECT &
+
 console.log(panels);
 
 const game = {
   round: 1,
-  timer: 15
+  timer: 15,
+  currentScore: 0,
+  highScore: 0,
 }
 
-// functions to light up & dim panels
+const currentScore = document.querySelector("#current-score").querySelector("p")
+console.log(currentScore);
+const highScore = document.querySelector("#high-score").querySelector("h4")
+console.log(highScore);
 
-// const lightPanel = (panel) => {
-//   panel.className += ' active'
-// }
-//
-// const dimPanel = (panel) => {
-//   panel.className = panel.className.replace(' active', '')
-// }
+const increaseScore = () => {
+  game.currentScore += 100
+  currentScore.innerHTML = `${game.currentScore}`
+}
 
-// lightup function to pass through
+const round = document.querySelector("#round").querySelector("h3")
+console.log(round);
+const timer = document.querySelector("#timer").querySelector("p")
+console.log(timer);
 
 const flashPanel = (panel) => {
   panel.className += ' active'
@@ -54,7 +63,6 @@ const getRandomPanel = () => {
 const sequence = [getRandomPanel()]
 
 let guessSequence = [...sequence]
-console.log(guessSequence);
 
 // FUNCTION AND VARIABLE FOR CLICKED PANEL
 
@@ -62,17 +70,22 @@ let clickable = false;
 
 const clickedPanel = (panel) => {
   if (!clickable) return;
-  console.log(panel);
+  // console.log(panel);
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
+    increaseScore()
     if (guessSequence.length === 0) {
       sequence.push(getRandomPanel())
       guessSequence = [...sequence]
       setTimeout(loopSequence, 1500)
     }
   } else {
-    // end game
-    // check for high score function
+    // end game function
+    if (game.currentScore > game.highScore) {
+      game.highScore = game.currentScore
+      highScore.innerHTML = `High Score: ${game.highScore}`
+      sessionStorage.setItem('sessionHighScore', highScore.innerHTML)
+    }
     alert("GAME OVER")
   }
 }

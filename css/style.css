@@ -40,7 +40,7 @@ section {
 }
 
 .top-left:hover {
-  background-color: lightblue;
+  background-color: skyblue;
 }
 
 .top-left:active {
@@ -55,7 +55,7 @@ section {
 }
 
 .top-right:hover {
-  background-color: lightyello;
+  background-color: lemonchiffon;
 }
 
 .top-right:active {
@@ -101,4 +101,24 @@ section {
 footer {
   display: flex;
   justify-content: center;
+}
+
+div h1 {
+  margin: 5px 0px 5px 0px;
+}
+
+#high-score h4 {
+  margin: 10px 0px 10px 0px;
+}
+
+#round h3 {
+  margin: 0px
+}
+
+#timer h4 {
+  margin: 10px 0px 10px 0px;
+}
+
+div p {
+  margin: 0px;
 }
