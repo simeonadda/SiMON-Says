@@ -18,9 +18,7 @@ const panels = [
 ];
 
 
-// GAME OBJECT &
-
-console.log(panels);
+// GAME OBJECT & HIGH SCORE STORAGE
 
 const game = {
   round: 1,
@@ -28,6 +26,10 @@ const game = {
   currentScore: 0,
   highScore: 0,
 }
+
+
+
+// SCORING SELECTORS AND INCREASE SCORE FUNCTION
 
 const currentScore = document.querySelector("#current-score").querySelector("p")
 console.log(currentScore);
@@ -39,11 +41,18 @@ const increaseScore = () => {
   currentScore.innerHTML = `${game.currentScore}`
 }
 
+
+
+
+// ROUND AND TIMER SELECTORS
+
 const round = document.querySelector("#round").querySelector("h3")
 console.log(round);
 const timer = document.querySelector("#timer").querySelector("p")
 console.log(timer);
 
+
+// FLASH PANEL FUNCTION
 const flashPanel = (panel) => {
   panel.className += ' active'
   setTimeout(() => {
@@ -83,12 +92,25 @@ const clickedPanel = (panel) => {
     // end game function
     if (game.currentScore > game.highScore) {
       game.highScore = game.currentScore
-      highScore.innerHTML = `High Score: ${game.highScore}`
-      sessionStorage.setItem('sessionHighScore', highScore.innerHTML)
+      populateHighScore()
     }
     alert("GAME OVER")
   }
 }
+
+
+const setHighScore = () => {
+  let sessionHighScore = sessionStorage.getItem('sessionHighScore')
+  highScore.innerHTML = sessionHighScore
+}
+
+const populateHighScore = () => {
+  sessionStorage.setItem('sessionHighScore', `High Score ${game.highScore}`)
+  setHighScore()
+}
+
+setHighScore()
+
 
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
