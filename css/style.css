@@ -5,7 +5,7 @@ body {
   font-size: 25px;
   margin: 225px;
   margin-top: 50px;
-  min-width: 650px;
+  min-width: 507px;
 }
 
 nav {
@@ -13,9 +13,23 @@ nav {
   justify-content: space-between;
 }
 
+.game-info {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  padding: 20px 30px 20px 30px;
+  box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
+}
+
+.game-scores {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: solid 1px rgba(0, 0, 0, 0.5);
+  padding: 20px 30px 20px 30px;
+  box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
+}
+
 section {
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
 }
 
 #simon-console {
@@ -101,7 +115,27 @@ section {
 footer {
   display: flex;
   justify-content: center;
+  justify-content: space-around;
+  /* border: solid 1px white; */
+  margin: 0px 100px 0px 100px;
+  min-width: 507px
 }
+
+.game-menu button {
+  background-color: rgba(0, 0, 0, 0.25);
+  /* border: solid 2px black; */
+  padding: 10px 30px 10px 30px;
+  color: white;
+  font-family: 'Cantarell', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
+}
+
+.game-menu button:hover {
+
+}
+
 
 div h1 {
   margin: 5px 0px 5px 0px;

@@ -9,13 +9,14 @@ const bottomRight = document.querySelector(".bottom-right")
 
 const simonButtons = document.querySelectorAll('.simon-button')
 
-
 const panels = [
   topLeft,
   topRight,
   bottomRight,
   bottomLeft,
 ];
+
+
 
 
 // GAME OBJECT & HIGH SCORE STORAGE
@@ -27,6 +28,14 @@ const game = {
   highScore: 0,
 }
 
+const startGame = () => {
+  setTimeout(loopSequence, 2000)
+}
+
+
+// MENU BUTTONS
+const arcade = document.querySelector("#arcade")
+arcade.addEventListener('click', startGame)
 
 
 // SCORING SELECTORS AND INCREASE SCORE FUNCTION
@@ -115,11 +124,9 @@ setHighScore()
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
 
-const loopSequence = () => {
+function loopSequence() {
   for (let i = 0; i < sequence.length; i++) {
     setTimeout(flashPanel, 1000 * i, sequence[i])
   }
   clickable = true;
 }
-
-loopSequence()
