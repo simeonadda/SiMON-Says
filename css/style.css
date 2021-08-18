@@ -115,7 +115,7 @@ section {
 footer {
   display: flex;
   justify-content: center;
-  justify-content: space-around;
+  justify-content: space-between;
   /* border: solid 1px white; */
   margin: 0px 100px 0px 100px;
   min-width: 507px
@@ -131,11 +131,6 @@ footer {
   font-weight: bold;
   box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
 }
-
-.game-menu button:hover {
-
-}
-
 
 div h1 {
   margin: 5px 0px 5px 0px;

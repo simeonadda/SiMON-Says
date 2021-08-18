@@ -1,7 +1,6 @@
 console.log("SiMON Says");
 
-// Panel selectors & panels array
-
+// PANEL SELECTORS AND PANEL ARRAY
 const topLeft = document.querySelector(".top-left")
 const topRight = document.querySelector(".top-right")
 const bottomLeft = document.querySelector(".bottom-left")
@@ -16,49 +15,51 @@ const panels = [
   bottomLeft,
 ];
 
-
-
-
-// GAME OBJECT & HIGH SCORE STORAGE
-
-const game = {
-  round: 1,
-  timer: 15,
-  currentScore: 0,
-  highScore: 0,
-}
-
-const startGame = () => {
-  setTimeout(loopSequence, 2000)
-}
-
-
 // MENU BUTTONS
 const arcade = document.querySelector("#arcade")
 arcade.addEventListener('click', startGame)
-
+const versus = document.querySelector("#versus")
+// versus.addEventListener('click',)
 
 // SCORING SELECTORS AND INCREASE SCORE FUNCTION
-
 const currentScore = document.querySelector("#current-score").querySelector("p")
 console.log(currentScore);
 const highScore = document.querySelector("#high-score").querySelector("h4")
 console.log(highScore);
 
-const increaseScore = () => {
-  game.currentScore += 100
-  currentScore.innerHTML = `${game.currentScore}`
-}
-
-
-
 
 // ROUND AND TIMER SELECTORS
-
 const round = document.querySelector("#round").querySelector("h3")
 console.log(round);
 const timer = document.querySelector("#timer").querySelector("p")
 console.log(timer);
+
+
+// GAME OBJECT & HIGH SCORE STORAGE
+const game = {
+  round: "",
+  timer: 15,
+  currentScore: 0,
+}
+
+
+let sessionHighScore = 0;
+
+round.innerHTML = `${game.round}`
+
+// START GAME FUNCTION
+function startGame(){
+  game.round = 1;
+  setTimeout(loopSequence, 2000)
+  return game.round
+}
+
+
+// INCREASE SCORE FUNCTION
+const increaseScore = () => {
+  game.currentScore += 100
+  currentScore.innerHTML = `${game.currentScore}`
+}
 
 
 // FLASH PANEL FUNCTION
@@ -70,63 +71,69 @@ const flashPanel = (panel) => {
 }
 
 // RETURNS A RANDOM PANEL
-
 const getRandomPanel = () => {
   return panels[Math.floor(Math.random() * panels.length)];
 }
 
 
 // SEQUENCE & PLAYER GUESSING
-
 const sequence = [getRandomPanel()]
-
 let guessSequence = [...sequence]
 
 // FUNCTION AND VARIABLE FOR CLICKED PANEL
-
 let clickable = false;
 
 const clickedPanel = (panel) => {
   if (!clickable) return;
-  // console.log(panel);
+  console.log("why so serious");
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
     increaseScore()
     if (guessSequence.length === 0) {
+      game.round++
       sequence.push(getRandomPanel())
       guessSequence = [...sequence]
       setTimeout(loopSequence, 1500)
     }
   } else {
     // end game function
-    if (game.currentScore > game.highScore) {
-      game.highScore = game.currentScore
+    console.log(game.currentScore);
+    if (game.currentScore > sessionHighScore) {
+      sessionHighScore = game.currentScore
+      console.log(sessionHighScore);
       populateHighScore()
     }
     alert("GAME OVER")
   }
 }
 
-
+// HIGH SCORE FUNCTIONS
 const setHighScore = () => {
-  let sessionHighScore = sessionStorage.getItem('sessionHighScore')
-  highScore.innerHTML = sessionHighScore
+  console.log(sessionHighScore);
+  if (sessionHighScore > 0) {
+    sessionHighScore = sessionStorage.getItem('sessionHighScore')
+  }
+  highScore.innerHTML = `High Score: ${sessionHighScore}`
 }
 
 const populateHighScore = () => {
-  sessionStorage.setItem('sessionHighScore', `High Score ${game.highScore}`)
+  sessionStorage.setItem('sessionHighScore', sessionHighScore)
   setHighScore()
 }
 
 setHighScore()
 
-
+function click() {
+  clickable = true;
+  console.log(clickable + "click")
+};
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
-
 function loopSequence() {
+  clickable = false;
   for (let i = 0; i < sequence.length; i++) {
     setTimeout(flashPanel, 1000 * i, sequence[i])
+    console.log(clickable);
   }
-  clickable = true;
+  click()
 }
