@@ -27,17 +27,11 @@ nav {
   box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
 }
 
-section {
-  /* display: flex;
-  justify-content: center; */
-}
 
 #simon-console {
   display: block;
   text-align: center;
-  /* border: solid 5px white; */
-  /* border-radius: 250px;
-  width: 515px; */
+  position: relative;
 }
 
 .simon-button {
@@ -49,7 +43,7 @@ section {
 
 .top-left {
   border-top-left-radius: 250px;
-  border: groove darkgray 10px;
+  border: groove blue 10px;
   background-color: blue;
 }
 
@@ -64,7 +58,7 @@ section {
 
 .top-right {
   border-top-right-radius: 250px;
-  border: groove darkgray 10px;
+  border: groove yellow 10px;
   background-color: yellow;
 }
 
@@ -77,10 +71,9 @@ section {
   transform: translate(-4px, 4px);
 }
 
-
 .bottom-left {
   border-bottom-left-radius: 250px;
-  border: groove darkgray 10px;
+  border: groove red 10px;
   background-color: red;
 }
 
@@ -95,7 +88,7 @@ section {
 
 .bottom-right {
   border-bottom-right-radius: 250px;
-  border: groove darkgray 10px;
+  border: groove green 10px;
   background-color: green;
 }
 
@@ -104,7 +97,7 @@ section {
 }
 
 .bottom-right:active {
-  background-color: white;
+  background-color: lightgreen;
   transform: translate(-4px, -4px);
 }
 
@@ -112,18 +105,26 @@ section {
   background-color: white;
 }
 
+.center {
+  width: 250px;
+  height: 250px;
+  border-radius: 130px;
+  border: solid dimgray 5px;
+  background-color: black;
+  position: absolute;
+  top: 125px;
+  right: 125px;
+  z-index: 1;
+}
+
 footer {
   display: flex;
   justify-content: center;
-  justify-content: space-between;
-  /* border: solid 1px white; */
-  margin: 0px 100px 0px 100px;
   min-width: 507px
 }
 
 .game-menu button {
   background-color: rgba(0, 0, 0, 0.25);
-  /* border: solid 2px black; */
   padding: 10px 30px 10px 30px;
   color: white;
   font-family: 'Cantarell', sans-serif;
