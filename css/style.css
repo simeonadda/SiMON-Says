@@ -27,11 +27,17 @@ nav {
   box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
 }
 
+.middle-section {
+  display: flex;
+  justify-content: center;
+}
 
 #simon-console {
-  display: block;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  max-width: 507px
 }
 
 .simon-button {
@@ -106,15 +112,22 @@ nav {
 }
 
 .center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 250px;
   height: 250px;
   border-radius: 130px;
   border: solid dimgray 5px;
   background-color: black;
   position: absolute;
-  top: 125px;
-  right: 125px;
+  /* top: 125px;
+  left: 275px; */
   z-index: 1;
+}
+
+h2 {
+
 }
 
 footer {
