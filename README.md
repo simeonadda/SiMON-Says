@@ -19,6 +19,8 @@ A for loop was used in conjunction with the setTimeout function to give a timing
 
 A "good" and "bad" sound was added so the user could determine whether the sequence it was correct or not.
 
+Session Storage was used to save and log the high score of the game. As long as your browser is open, your high score will be saved. Once you exit the browser your high score will be reset. Local storage would allow you to exit the browser and still have your high score when the browser is opened. 
+
 ## Unsolved Problems
 I have a few bugs that really BUGGED me and I believe I would be able to fix with a little more knowledge and refactoring.
 
