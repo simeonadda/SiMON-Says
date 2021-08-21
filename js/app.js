@@ -43,10 +43,7 @@ const game = {
 }
 
 
-let sessionHighScore;
-
-round.innerHTML = `${game.round}`
-
+let sessionHighScore = 0;
 
 // TIMER FUNCTION
 function startTimer() {
@@ -60,13 +57,31 @@ function startTimer() {
       clearInterval(clock)
     }
   }, 1000)
+  // const clockTenths = setInterval(() => {
+  //   timer.innerHTML = `${game.timer}`.`${game.timerTenths}`
+  // }, 100)
 }
 
 // START GAME FUNCTION
-function startGame(){
+function startGame() {
   game.round = 1;
-  setTimeout(loopSequence, 2000)
+  round.innerHTML = game.round
+  setTimeout(loopSequence, 1000)
   return game.round
+}
+
+
+// END GAME FUNCTION
+function endGame() {
+  game.timer = 0
+  simonButtons.disabled = true;
+  let center = document.querySelector(".center").querySelector("h2")
+  center.innerHTML = 'Game Over'
+  if (game.currentScore > sessionHighScore) {
+    sessionHighScore = game.currentScore
+    console.log(sessionHighScore + "if > session");
+    populateHighScore()
+  }
 }
 
 
@@ -99,25 +114,18 @@ let guessSequence = [...sequence]
 
 const clickedPanel = (panel) => {
   click()
-  console.log("why so serious");
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
     increaseScore()
     if (guessSequence.length === 0) {
       game.round++
+      round.innerHTML = game.round
       sequence.push(getRandomPanel())
       guessSequence = [...sequence]
-      setTimeout(loopSequence, 1500)
+      setTimeout(loopSequence, 1000)
     }
   } else {
-    // end game function
-    console.log(game.currentScore);
-    if (game.currentScore > sessionHighScore) {
-      sessionHighScore = game.currentScore
-      console.log(sessionHighScore + "if > session");
-      populateHighScore()
-    }
-    alert("GAME OVER")
+    endGame()
   }
 }
 
@@ -148,6 +156,6 @@ function loopSequence() {
   game.timer = 5
   startTimer()
   for (let i = 0; i < sequence.length; i++) {
-    setTimeout(flashPanel, 1000 * i, sequence[i])
+    setTimeout(flashPanel, 750 * i, sequence[i])
   }
 }
