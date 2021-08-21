@@ -35,29 +35,28 @@
         <p></p>
       </div>
       <div id="high-score">
-        <h4>0</h4>
+        <h4></h4>
       </div>
     </div>
   </nav>
   <br>
   <br>
   <body>
+
     <div class="middle-section">
       <section id="simon-console">
-        <!-- <div>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-left"></button>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-right"></button>
-        </div> -->
         <div class="center">
           <h2>SiMON</h2>
+          <div class="refresh">
+            <button type="button" id="restart" onclick="window.location.reload();" style="display:none;">Restart Game</button>
+          </div>
         </div>
         <div>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-left"></button>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-right"></button>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button bottom-left"></button>
-          <button onclick="clickedPanel(event.currentTarget)" class="simon-button bottom-right"></button>
+          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-left" disabled></button>
+          <button onclick="clickedPanel(event.currentTarget)" class="simon-button top-right" disabled></button>
+          <button onclick="clickedPanel(event.currentTarget)" class="simon-button bottom-left" disabled></button>
+          <button onclick="clickedPanel(event.currentTarget)" class="simon-button bottom-right" disabled></button>
         </div>
-
       </section>
     </div>
     <br>

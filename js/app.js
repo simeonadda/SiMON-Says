@@ -8,6 +8,8 @@ const bottomRight = document.querySelector(".bottom-right")
 
 const simonButtons = document.querySelectorAll('.simon-button')
 
+const center = document.querySelector(".center").querySelector("h2")
+
 const panels = [
   topLeft,
   topRight,
@@ -35,15 +37,17 @@ const timer = document.querySelector("#timer").querySelector("p")
 console.log(timer);
 
 
+
+
 // GAME OBJECT & HIGH SCORE STORAGE
 const game = {
   round: "",
-  timer: 5,
+  timer: 10,
   currentScore: 0,
 }
 
 
-let sessionHighScore = 0;
+let sessionHighScore = null;
 
 // TIMER FUNCTION
 function startTimer() {
@@ -62,25 +66,45 @@ function startTimer() {
   // }, 100)
 }
 
+function enableButtons() {
+  topLeft.disabled = false;
+  topRight.disabled = false;
+  bottomRight.disabled = false;
+  bottomLeft.disabled = false;
+}
+
+function disableButtons() {
+  topLeft.disabled = true;
+  topRight.disabled = true;
+  bottomRight.disabled = true;
+  bottomLeft.disabled = true;
+}
+
 // START GAME FUNCTION
 function startGame() {
   game.round = 1;
   round.innerHTML = game.round
   setTimeout(loopSequence, 1000)
-  return game.round
+  enableButtons()
+}
+
+// RESTART GAME
+const restartButton = document.querySelector("#restart")
+function showRestart() {
+  center.innerHTML = ""
+  restartButton.style.display = 'flex'
 }
 
 
 // END GAME FUNCTION
 function endGame() {
   game.timer = 0
-  simonButtons.disabled = true;
-  let center = document.querySelector(".center").querySelector("h2")
+  disableButtons()
   center.innerHTML = 'Game Over'
   if (game.currentScore > sessionHighScore) {
     sessionHighScore = game.currentScore
-    console.log(sessionHighScore + "if > session");
     populateHighScore()
+    showRestart()
   }
 }
 
@@ -113,7 +137,6 @@ let guessSequence = [...sequence]
 // FUNCTION AND VARIABLE FOR CLICKED PANEL
 
 const clickedPanel = (panel) => {
-  click()
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
     increaseScore()
@@ -146,15 +169,10 @@ const populateHighScore = () => {
 
 setHighScore()
 
-function click() {
-  simonButtons.disabled = false;
-};
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
 function loopSequence() {
-  simonButtons.disabled = true
-  game.timer = 5
-  startTimer()
+  game.timer = 10
   for (let i = 0; i < sequence.length; i++) {
     setTimeout(flashPanel, 750 * i, sequence[i])
   }

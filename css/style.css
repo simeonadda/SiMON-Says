@@ -165,3 +165,13 @@ div h1 {
 div p {
   margin: 0px;
 }
+
+#restart {
+  background-color: rgba(0, 0, 0, 0.25);
+  padding: 10px 10px 10px 10px;
+  color: white;
+  font-family: 'Cantarell', sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  box-shadow: 0 8px 16px 0 rgba(255,255,255,0.2), 0 6px 20px 0 rgba(255,255,255,0.8);
+}
