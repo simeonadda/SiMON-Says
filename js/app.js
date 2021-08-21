@@ -65,6 +65,7 @@ function startTimer() {
       game.timer = 0
       clearInterval(clock)
     }
+
   }, 1000)
 }
 
@@ -160,12 +161,10 @@ const clickedPanel = (panel) => {
 const setHighScore = () => {
   sessionHighScore = sessionStorage.getItem('sessionHighScore')
   highScore.innerHTML = `High Score: ${sessionHighScore}`
-  if (sessionHighScore = null) {
+  if (sessionHighScore === null) {
     sessionHighScore = 0
-    console.log(sessionHighScore);
     highScore.innerHTML = `High Score: ${sessionHighScore}`
     }
-  console.log(sessionHighScore);
 }
 
 const populateHighScore = () => {
