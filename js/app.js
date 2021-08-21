@@ -40,6 +40,7 @@ console.log(timer);
 // SOUND SELECTORS
 const goodSound = document.querySelector("#sound4")
 const badSound = document.querySelector("#sound2")
+const loserSound = document.querySelector("#loser")
 
 
 // GAME OBJECT & HIGH SCORE STORAGE
@@ -107,6 +108,7 @@ function endGame() {
     populateHighScore()
   }
   showRestart()
+  loserSound.play()
 }
 
 
