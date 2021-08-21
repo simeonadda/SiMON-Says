@@ -150,7 +150,6 @@ const clickedPanel = (panel) => {
       setTimeout(loopSequence, 1000)
     }
   } else {
-    badSound()
     endGame()
   }
 }
