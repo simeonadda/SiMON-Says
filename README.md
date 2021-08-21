@@ -3,11 +3,11 @@ Simon Says Memory Pattern Game
 
 Simon is a classic memory pattern game that was played in the 90's (if not before) that involves remembering the sequences of color patterns on a game console and then repeating those patterns back by pressing the corresponding buttons on the console.
 
-## How to play
-Click Arcade to begin the game and follow the light pattern to see how high of a score you can achieve.
-
 ## Why I Made It
 I always enjoyed playing Simon although it has been a very long time. I think I'm drawn to simple concepts but want to make them sleek and visually cool and I thought a Simon game would allow me to do just that. The game itself is simple but you can do many things to spruce it up and I plan on continuing to add functionality as I grow as a developer. 
+
+## How to play
+Click Arcade to begin the game and follow the light pattern to see how high of a score you can achieve.
 
 ## Wire Frame
 ![SiMON Wire Frame](https://user-images.githubusercontent.com/88408297/130312162-0e740b83-1e65-46d6-a88b-c5b7156aa57e.png)
