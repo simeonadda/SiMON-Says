@@ -51,6 +51,7 @@ const game = {
 
 
 let sessionHighScore = 0;
+console.log(sessionHighScore);
 
 // TIMER FUNCTION
 function startTimer() {
@@ -64,9 +65,6 @@ function startTimer() {
       clearInterval(clock)
     }
   }, 1000)
-  // const clockTenths = setInterval(() => {
-  //   timer.innerHTML = `${game.timer}`.`${game.timerTenths}`
-  // }, 100)
 }
 
 function enableButtons() {
@@ -159,13 +157,17 @@ const clickedPanel = (panel) => {
 
 // HIGH SCORE FUNCTIONS
 const setHighScore = () => {
-  console.log(sessionHighScore + " setHi");
-    sessionHighScore = sessionStorage.getItem('sessionHighScore')
+  sessionHighScore = sessionStorage.getItem('sessionHighScore')
   highScore.innerHTML = `High Score: ${sessionHighScore}`
+  if (sessionHighScore = null) {
+    sessionHighScore = 0
+    console.log(sessionHighScore);
+    highScore.innerHTML = `High Score: ${sessionHighScore}`
+    }
+  console.log(sessionHighScore);
 }
 
 const populateHighScore = () => {
-  console.log(sessionHighScore + " popHi");
   sessionStorage.setItem('sessionHighScore', sessionHighScore)
   setHighScore()
 }
@@ -175,6 +177,7 @@ setHighScore()
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
 function loopSequence() {
+  startTimer()
   game.timer = 10
   for (let i = 0; i < sequence.length; i++) {
     setTimeout(flashPanel, 750 * i, sequence[i])
