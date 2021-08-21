@@ -37,6 +37,9 @@ const timer = document.querySelector("#timer").querySelector("p")
 console.log(timer);
 
 
+// SOUND SELECTORS
+const goodSound = document.querySelector("#sound4")
+const badSound = document.querySelector("#sound2")
 
 
 // GAME OBJECT & HIGH SCORE STORAGE
@@ -47,7 +50,7 @@ const game = {
 }
 
 
-let sessionHighScore = null;
+let sessionHighScore = 0;
 
 // TIMER FUNCTION
 function startTimer() {
@@ -104,8 +107,8 @@ function endGame() {
   if (game.currentScore > sessionHighScore) {
     sessionHighScore = game.currentScore
     populateHighScore()
-    showRestart()
   }
+  showRestart()
 }
 
 
@@ -139,6 +142,7 @@ let guessSequence = [...sequence]
 const clickedPanel = (panel) => {
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
+    goodSound.play()
     increaseScore()
     if (guessSequence.length === 0) {
       game.round++
@@ -148,6 +152,7 @@ const clickedPanel = (panel) => {
       setTimeout(loopSequence, 1000)
     }
   } else {
+    badSound()
     endGame()
   }
 }
@@ -155,9 +160,7 @@ const clickedPanel = (panel) => {
 // HIGH SCORE FUNCTIONS
 const setHighScore = () => {
   console.log(sessionHighScore + " setHi");
-  if (sessionHighScore > 0) {
     sessionHighScore = sessionStorage.getItem('sessionHighScore')
-  }
   highScore.innerHTML = `High Score: ${sessionHighScore}`
 }
 
