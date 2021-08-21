@@ -38,14 +38,29 @@ console.log(timer);
 // GAME OBJECT & HIGH SCORE STORAGE
 const game = {
   round: "",
-  timer: 15,
+  timer: 5,
   currentScore: 0,
 }
 
 
-let sessionHighScore = 0;
+let sessionHighScore;
 
 round.innerHTML = `${game.round}`
+
+
+// TIMER FUNCTION
+function startTimer() {
+  const clock = setInterval(() => {
+    timer.innerHTML = `${game.timer}`
+
+    game.timer--
+
+    if (game.timer < 0) {
+      game.timer = 0
+      clearInterval(clock)
+    }
+  }, 1000)
+}
 
 // START GAME FUNCTION
 function startGame(){
@@ -81,10 +96,9 @@ const sequence = [getRandomPanel()]
 let guessSequence = [...sequence]
 
 // FUNCTION AND VARIABLE FOR CLICKED PANEL
-let clickable = false;
 
 const clickedPanel = (panel) => {
-  if (!clickable) return;
+  click()
   console.log("why so serious");
   const guessPanel = guessSequence.shift()
   if (guessPanel === panel) {
@@ -100,7 +114,7 @@ const clickedPanel = (panel) => {
     console.log(game.currentScore);
     if (game.currentScore > sessionHighScore) {
       sessionHighScore = game.currentScore
-      console.log(sessionHighScore);
+      console.log(sessionHighScore + "if > session");
       populateHighScore()
     }
     alert("GAME OVER")
@@ -109,7 +123,7 @@ const clickedPanel = (panel) => {
 
 // HIGH SCORE FUNCTIONS
 const setHighScore = () => {
-  console.log(sessionHighScore);
+  console.log(sessionHighScore + " setHi");
   if (sessionHighScore > 0) {
     sessionHighScore = sessionStorage.getItem('sessionHighScore')
   }
@@ -117,6 +131,7 @@ const setHighScore = () => {
 }
 
 const populateHighScore = () => {
+  console.log(sessionHighScore + " popHi");
   sessionStorage.setItem('sessionHighScore', sessionHighScore)
   setHighScore()
 }
@@ -124,16 +139,15 @@ const populateHighScore = () => {
 setHighScore()
 
 function click() {
-  clickable = true;
-  console.log(clickable + "click")
+  simonButtons.disabled = false;
 };
 
 // AARAY OF PANELS TO LOOP RANDOM SEQUENCE THROUGH WITH FLASH FUNCTION
 function loopSequence() {
-  clickable = false;
+  simonButtons.disabled = true
+  game.timer = 5
+  startTimer()
   for (let i = 0; i < sequence.length; i++) {
     setTimeout(flashPanel, 1000 * i, sequence[i])
-    console.log(clickable);
   }
-  click()
 }

@@ -3,7 +3,7 @@ body {
   color: white;
   font-family: 'Cantarell', sans-serif;
   font-size: 25px;
-  margin: 225px;
+  margin: 400px;
   margin-top: 50px;
   min-width: 500px;
 }
@@ -123,8 +123,6 @@ nav {
   border: solid dimgray 5px;
   background-color: black;
   position: absolute;
-  /* top: 125px;
-  left: 275px; */
   z-index: 1;
 }
 
